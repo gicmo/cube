@@ -1,0 +1,14 @@
+*.o
+*.ptx
+*.dylib
+*.so
+*.s
+*~
+*.mat
+*.trc
+
+lib/version.c
+
+build/
+
+*.DS_Store
