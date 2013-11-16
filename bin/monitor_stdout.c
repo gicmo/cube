@@ -1,3 +1,6 @@
+// This file is part of the cube - ica/cuda - software package
+// Copyright © 2010-2013 Christian Kellner <kellner@bio.lmu.de>
+// License: MIT (see LICENSE.BSD-MIT)
 
 #include <string.h> //memcpy, memset
 #include <stdio.h>
@@ -20,12 +23,12 @@ term_get_chars ()
 
   res = ioctl (STDOUT_FILENO, TIOCGWINSZ, &ws);
 
-  if (res == -1) 
+  if (res == -1)
     {
       cols = 80;
       return 80;
     }
-    
+
   return ws.ws_col;
 }
 

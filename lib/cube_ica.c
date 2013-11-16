@@ -1,3 +1,10 @@
+// This file is part of the cube - ica/cuda - software package
+// Copyright © 2010-2013 Christian Kellner <kellner@bio.lmu.de>
+// Copyright © 1999 Michael S. Lewicki and CMU
+// Part of the code is based on code written by Mike Lewicki
+//
+// License: MIT (see LICENSE.BSD-MIT)
+
 
 #include "cube.h"
 #include "cube_blas.h"

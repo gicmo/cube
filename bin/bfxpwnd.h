@@ -1,3 +1,7 @@
+// This file is part of the cube - ica/cuda - software package
+// Copyright © 2010-2013 Christian Kellner <kellner@bio.lmu.de>
+// License: MIT (see LICENSE.BSD-MIT)
+
 #ifndef BFXP_WINDOW_H
 #define BFXP_WINDOW_H
 

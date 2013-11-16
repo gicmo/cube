@@ -1,3 +1,6 @@
+// This file is part of the cube - ica/cuda - software package
+// Copyright © 2010-2013 Christian Kellner <kellner@bio.lmu.de>
+// License: MIT (see LICENSE.BSD-MIT)
 
 #include "cube.h"
 #include "cube_matrix.h"
