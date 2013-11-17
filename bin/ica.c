@@ -261,7 +261,8 @@ do_ica (cube_t *ctx, ica_t *ica)
 static void
 usage (const char *prgname)
 {
-  printf ("usage: %s <datafile.h5>", prgname);
+  printf ("cube ica :: version %s [%0.7s]\n", version, version_git);
+  printf ("usage: %s <datafile.h5>\n", prgname);
 }
 
 static char *
