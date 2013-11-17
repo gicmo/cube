@@ -4,10 +4,23 @@
 cmake_minimum_required (VERSION 2.8)
 project (cube C CXX Fortran)
 
+### include local modules
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
+### version
+set(cube_VERSION_MAJOR 0)
+set(cube_VERSION_MINOR 8)
+
+# also get the current git revision
+include(GetGitRevisionDescription)
+get_git_head_revision(GIT_REFSPEC GIT_REV)
+
+
 #if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 #  set(CMAKE_C_FLAGS "-std=gnu99")
 #endif()
 
+### compiler flags
 set(CMAKE_C_FLAGS "-std=c11 -D_XOPEN_SOURCE=700")
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic")
@@ -15,8 +28,6 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0 -ggdb3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -O2")
 
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 #########################################
 # HDF-5
@@ -94,8 +105,11 @@ file(GLOB cube_SOURCES lib/*.c)
 file(GLOB cube_INCLUDES lib/*.h)
 file(GLOB cube_CUFILES lib/kernel/*.cu)
 
+configure_file("${PROJECT_SOURCE_DIR}/lib/version.c.in"
+               "${PROJECT_BINARY_DIR}/version.c")
+
 cuda_add_library(cube SHARED
-                 lib/version.c
+                 "${PROJECT_BINARY_DIR}/version.c"
                  ${cube_SOURCES}
 		 ${cube_INCLUDES}
 		 ${cube_CUFILES})
@@ -108,11 +122,9 @@ set_target_properties(cube PROPERTIES
   FRAMEWORK_VERSION 1.0
   PUBLIC_HEADER "${cube_INCLUDES}")
 
-add_custom_command(OUTPUT             lib/version.c
-                   COMMAND            sed -e "s/@GIT_REV@/$(shell git rev-parse HEAD)/" > lib/version.c
-		   DEPENDS            lib/version.c.in
-                   WORKING_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}
-                   COMMENT            "Auto generated version file")
+
+
+
 
 #######################################
 # The ICA binary

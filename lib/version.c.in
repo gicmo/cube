@@ -5,3 +5,4 @@
 #include "version.h"
 
 const char *version_git = "@GIT_REV@";
+const char *version     = "@cube_VERSION_MAJOR@.@cube_VERSION_MINOR@";
