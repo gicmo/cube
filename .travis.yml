@@ -1,0 +1,28 @@
+language: cpp
+
+env:
+  matrix:
+    - CMAKE_BUILD_TYPE=DEBUG
+
+install:
+- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+- sudo add-apt-repository ppa:gicmo/packagedump -y
+- sudo add-apt-repository ppa:gnode/pandora -y
+- sudo apt-get update -qq -y
+- sudo apt-get install libhdf5-serial-dev libhdf5-dev libhdf5-7
+- sudo apt-get install libblas-dev liblapacke-dev
+- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev gfortran cmake
+- sudo apt-get install libjson0-dev libssl-dev freeglut3-dev libxmu-dev
+- sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit
+
+before_script:
+- mkdir -p build
+- cd build
+- CXX=g++-4.8 CC=gcc-4.8 cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} ..
+- cd ..
+
+script:
+- cd build
+- make
+- cd ..
+
