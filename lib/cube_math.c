@@ -13,6 +13,7 @@
 #include <acml.h>
 #else
 #include <cblas.h>
+#include <lapacke.h>
 #endif
 #endif
 
@@ -56,18 +57,12 @@ cube_host_dgesvd (char jobu, char jobvt, int m, int n, double *A, int lda, doubl
 	  work, &lwork, info);
 
   free (work);
-#elif defined (HAVE_MKL)
-#if 0
+#elif defined (HAVE_ACML)
+  dgesvd (jobu, jobvt, m, n, A, lda, s, U, ldu, Vt, ldvt, info);
+#else
   double superb[min(m,n)];
   *info = LAPACKE_dgesvd (LAPACK_COL_MAJOR, jobu, jobvt, m, n, A, lda,
 			  s, U, ldu, Vt, ldvt, superb);
-#else
-  *info = LAPACKE_dgesdd(LAPACK_COL_MAJOR, 'S', m, n, A, lda, s,
-			U, ldu, Vt, ldvt);
-#endif
-
-#else
-  dgesvd (jobu, jobvt, m, n, A, lda, s, U, ldu, Vt, ldvt, info);
 #endif
 }
 
@@ -108,11 +103,11 @@ cube_host_dgesdd (char jobz, int m, int n, double *A, int lda, double *s, double
 
   free (work);
   free (iwork);
-#elif defined (HAVE_MKL)
+#elif defined (HAVE_ACML)
+  dgesdd (jobz, m, n, A, lda, s, U, ldu, Vt, ldvt, info);
+#else
   *info = LAPACKE_dgesdd (LAPACK_COL_MAJOR, jobz, m, n, A, lda, s,
 			  U, ldu, Vt, ldvt);
-#else
-  dgesdd (jobz, m, n, A, lda, s, U, ldu, Vt, ldvt, info);
 #endif
 }
 
