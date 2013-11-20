@@ -11,7 +11,8 @@ install:
 - sudo apt-get update -qq -y
 - sudo apt-get install libblas-dev liblapacke-dev
 - sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev gfortran cmake
-- sudo apt-get install libhdf5-serial-dev libjson0-dev libssl-dev
+- sudo apt-get install libjson0-dev libssl-dev
+- sudo apt-get install libhdf5-serial-dev libhdf5-dev
 - sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit
 
 before_script:
