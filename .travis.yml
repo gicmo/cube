@@ -5,12 +5,13 @@ env:
     - CMAKE_BUILD_TYPE=DEBUG
 
 install:
-- sudo apt-get install libblas-dev
+- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo add-apt-repository ppa:gicmo/packagedump -y
 - sudo apt-get update -qq -y
-- sudo apt-get install liblapacke-dev
-- sudo apt-get install libhdf5-serial-dev
+- sudo apt-get install libblas-dev liblapacke-dev
+- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev libhdf5-serial-dev
 - sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit cmake
+- sudo apt-get install liblapacke-dev
 
 before_script:
 - mkdir -p build
