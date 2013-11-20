@@ -9,14 +9,14 @@ install:
 - sudo add-apt-repository ppa:gicmo/packagedump -y
 - sudo apt-get update -qq -y
 - sudo apt-get install libblas-dev liblapacke-dev
-- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev libhdf5-serial-dev
-- sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit cmake
-- sudo apt-get install liblapacke-dev
+- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev gfortran cmake
+- sudo apt-get install libhdf5-serial-dev libsjon0-dev libssl-dev
+- sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit
 
 before_script:
 - mkdir -p build
 - cd build
-- CXX=g++-4.8 cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} ..
+- CXX=g++-4.8 CC=gcc-4.8 cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} ..
 - cd ..
 
 script:
