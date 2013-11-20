@@ -8,7 +8,9 @@ install:
 - sudo add-apt-repository ppa:gicmo/packagedump -y
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo apt-get update -qq -y
-- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev libhdf5-serial-dev nvidia-cuda-dev nvidia-cuda-toolkit cmake libblas-dev liblapacke-dev liblapack-dev libblas3gf liblapack3gf
+- sudo apt-get install gcc-4.8 g++-4.8 libstdc++-4.8-dev libhdf5-serial-dev
+- sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit cmake
+- sudo apt-get install libblas-dev liblapacke-dev libblas3gf liblapack3gf liblapack3
 
 before_script:
 - mkdir -p build
