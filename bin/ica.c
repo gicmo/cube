@@ -310,6 +310,23 @@ creator_str ()
   return str;
 }
 
+static void
+ica_gen_id(ica_t *ica)
+{
+  SHA_CTX sha1;
+  unsigned char md[20];
+
+  SHA1_Init (&sha1);
+  SHA1_Update (&sha1, ica->cfgid, strlen (ica->cfgid));
+  SHA1_Update (&sha1, ica->dataset->id, strlen (ica->dataset->id));
+  SHA1_Update (&sha1, ica->creator, strlen (ica->creator));
+  SHA1_Update (&sha1, ica->ctime, strlen (ica->ctime));
+  SHA1_Update (&sha1, &ica->gpu, sizeof (ica->gpu));
+  SHA1_Final (md, &sha1);
+
+  ica->id = hex_encode_data (md, 20);
+}
+
 static ica_t *
 setup_ica (cube_t *ctx, cube_h5_t fd, const char *cfgid, const char *dsid)
 {
@@ -317,8 +334,6 @@ setup_ica (cube_t *ctx, cube_h5_t fd, const char *cfgid, const char *dsid)
   ica_prior_t *prior;
   ica_dataset_t *ds;
   sca_config_t *cfg;
-  SHA_CTX sha1;
-  unsigned char md[20];
 
   ica = malloc (sizeof (ica_t));
   ica->gpu = cube_context_is_gpu (ctx);
@@ -336,15 +351,8 @@ setup_ica (cube_t *ctx, cube_h5_t fd, const char *cfgid, const char *dsid)
 
   sca_config_free (cfg);
 
-  SHA1_Init (&sha1);
-  SHA1_Update (&sha1, cfgid, strlen (cfgid));
-  SHA1_Update (&sha1, dsid, strlen (dsid));
-  SHA1_Update (&sha1, ica->creator, strlen (ica->creator));
-  SHA1_Update (&sha1, ica->ctime, strlen (ica->ctime));
-  SHA1_Update (&sha1, &ica->gpu, sizeof (ica->gpu));
-  SHA1_Final (md, &sha1);
+  ica_gen_id (ica);
 
-  ica->id = hex_encode_data (md, 20);
   ica->fd = fd;
 
   list_head_init (&ica->monitors);
