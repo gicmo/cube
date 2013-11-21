@@ -2,7 +2,11 @@
 // Copyright © 2010-2013 Christian Kellner <kellner@bio.lmu.de>
 // License: MIT (see LICENSE.BSD-MIT)
 
-#include <openssl/sha.h>
+#ifdef __APPLE__
+  #include <CommonCrypto/CommonDigest.h>
+#else
+  #include <openssl/sha.h>
+#endif
 
 #include "version.h"
 #include "sca.h"
@@ -19,7 +23,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
-
 
 #define USEC 1000000.0
 
@@ -309,6 +312,13 @@ creator_str ()
   str = strdup (buffer);
   return str;
 }
+
+#ifdef __APPLE__
+  #define SHA_CTX CC_SHA1_CTX
+  #define SHA1_Init CC_SHA1_Init
+  #define SHA1_Update CC_SHA1_Update
+  #define SHA1_Final CC_SHA1_Final
+#endif
 
 static void
 ica_gen_id(ica_t *ica)
