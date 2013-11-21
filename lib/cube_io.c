@@ -545,14 +545,12 @@ cube_h5_attr_read_string (cube_h5_t   fd,
 {
   hid_t dset;
   hid_t attr;
-  hid_t space;
   hid_t ftype;
   hid_t mtype;
   char *str;
 
   dset = H5Oopen (fd, path, H5P_DEFAULT);
   attr = H5Aopen (dset, attribute, H5P_DEFAULT);
-  space = H5Aget_space (attr);
 
   ftype = H5Aget_type (attr);
   str = cube_h5_alloc_string (ftype, &mtype);

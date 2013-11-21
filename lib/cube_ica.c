@@ -255,7 +255,6 @@ cube_ica_extract_patches (cube_t        *ctx,
   int ppi; //pats-per-image
   int nch; //number of channels
   int ps;  //patchsize
-  int *xx;
 
   idx = dataset->indicies;
   img = dataset->imgdata;
@@ -270,7 +269,6 @@ cube_ica_extract_patches (cube_t        *ctx,
   n = cube_matrix_get_n (patches);
   tmp = cube_matrix_create (ctx, m, n);
 
-  xx = cube_array_get_data (idx);
   D = cube_matrix_get_data (tmp);
 
   bsize = ppi*ps*ps*nch;

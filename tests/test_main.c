@@ -323,7 +323,6 @@ static int
 test_rescale_bfs (cube_t *ctx, cube_h5_t fd, TestFlags flags)
 {
   cube_matrix_t *D;
-  cube_array_t  *std_ref;
   cube_matrix_t *A_ref;
   cube_matrix_t *A;
   double std;
@@ -334,7 +333,6 @@ test_rescale_bfs (cube_t *ctx, cube_h5_t fd, TestFlags flags)
 
   A = cube_h5_read_matrix (ctx, fd, "/test/dataset/Ainit");
   D = cube_h5_read_matrix (ctx, fd, "/test/dataset/D");
-  std_ref = cube_h5_read_array (fd, "/test/dataset/D_sigma");
   A_ref   = cube_h5_read_matrix (ctx, fd, "/test/dataset/A_scaled");
 
   m = cube_matrix_get_m (D);

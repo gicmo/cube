@@ -338,7 +338,6 @@ resize(int w, int h)
 static void *
 gui_loop (void *arg)
 {
-  int wid;
   int argc;
   char *argv = {"ica"};
 
@@ -347,7 +346,7 @@ gui_loop (void *arg)
   glutInit (&argc, &argv);
   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
   glutInitWindowSize (640, 480);
-  wid = glutCreateWindow ("ICA");
+  glutCreateWindow ("ICA");
 
   glClearColor (1.0 ,1.0, 1.0, 0.0);
   glColor3f (0.0, 0.0, 0.0);
@@ -376,10 +375,6 @@ typedef struct oglui_monitor_t {
 static int
 oglui_monitor (ica_monitor_t *m, ICAStatusType stype, int i, int imax, ica_t *ica, cube_t *ctx)
 {
-  oglui_monitor_t *monitor;
-
-  monitor = (oglui_monitor_t *) m;
-
   if (stype == 0 && i == 0)
     glui_ica_start (ica);
 

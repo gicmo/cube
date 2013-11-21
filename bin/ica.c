@@ -261,7 +261,7 @@ do_ica (cube_t *ctx, ica_t *ica)
 static void
 usage (const char *prgname)
 {
-  printf ("cube ica :: version %s [%0.7s]\n", version, version_git);
+  printf ("cube ica :: version %s [%.7s]\n", version, version_git);
   printf ("usage: %s <datafile.h5>\n", prgname);
 }
 
@@ -502,7 +502,6 @@ main (int argc, char **argv)
   char *filename;
   char *cfgid;
   char *dsid;
-  int   force;
   int   gpu;
   int   res;
   int   batch;
@@ -510,7 +509,6 @@ main (int argc, char **argv)
 
   cfgid = dsid = NULL;
   opterr = 0;
-  force = 0;
   batch = 0;
   gpu = 1;
 
@@ -522,10 +520,6 @@ main (int argc, char **argv)
       case 'v':
         options.verbose = 1;
         break;
-
-      case 'f':
-	force = 1;
-	break;
 
       case 'H':
         gpu = 0;

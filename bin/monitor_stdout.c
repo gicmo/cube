@@ -52,7 +52,7 @@ show_dataset_info (ica_dataset_t *ds)
   int i, n;
   char *data;
 
-  fprintf (stream, "Dataset [%s] {%p}\n", ds->id, ds);
+  fprintf (stream, "Dataset [%s] {%p}\n", ds->id, (void *) ds);
   fprintf (stream, "\t Dim: %d\n", ds->dim);
   fprintf (stream, "\t Channel: %d\n", ds->nchannel);
   fprintf (stream, "\t Patchsize: %d\n", ds->patchsize);

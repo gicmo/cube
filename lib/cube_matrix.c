@@ -235,7 +235,7 @@ cube_matrix_gemm (cube_t *ctx,
 {
   void *devA, *devB, *devC;
   int m, n, k;
-  int x, y, z;
+  int x, y;
 
   if (! cube_context_check (ctx))
     return;
@@ -247,7 +247,6 @@ cube_matrix_gemm (cube_t *ctx,
   k = A->n;
 
   y = B->m;
-  z = B->n;
 
   devA = A->dev_ptr;
   devB = B->dev_ptr;
