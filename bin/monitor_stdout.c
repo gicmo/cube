@@ -18,14 +18,12 @@ static int
 term_get_chars ()
 {
   struct winsize ws;
-  int cols;
   int res;
 
   res = ioctl (STDOUT_FILENO, TIOCGWINSZ, &ws);
 
   if (res == -1)
     {
-      cols = 80;
       return 80;
     }
 
