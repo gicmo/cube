@@ -163,6 +163,14 @@ add_test("CubeMain" cube_test)
 include(CTest)
 
 ########################################
+# Misc
+
+# etags
+if(UNIX)
+  add_custom_target(tags etags --members --declarations `find ${CMAKE_CURRENT_SOURCE_DIR} -name "*.h" -o -name "*.c" -o -name ".cu" ` )
+endif()
+
+########################################
 
 MESSAGE(STATUS "READY. ")
 MESSAGE(STATUS "===============================")
