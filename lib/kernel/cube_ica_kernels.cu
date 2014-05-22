@@ -51,10 +51,10 @@ sumpower_dev (const double *x,
 {
   int i, off;
 
-  // zero out shared mem so we can sum on int directly
+  // zero out shared mem so we can sum on it directly
   sum[threadIdx.x] = 0;
 
-  __syncthreads (); // necessary?
+  //__syncthreads (); // not really necessary 
 
   for (i = 0; i < bs; i++)
     {
@@ -69,7 +69,7 @@ sumpower_dev (const double *x,
       sum[threadIdx.x] += u;
     }
 
-  // b-tree result calculation
+  // binary reduction
   for (off = 1; off < blockDim.x; off = off << 1)
     {
       __syncthreads ();
@@ -84,7 +84,7 @@ sumpower_dev (const double *x,
     }
 
   // write memory back to device memory
-  __syncthreads (); // not sure that is needed either
+  __syncthreads (); // really needed?
   // sum[0] will hold the result!
   return sum[0];
 }
