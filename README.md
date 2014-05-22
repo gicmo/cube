@@ -12,5 +12,3 @@ in Int. workshop on ICA, (Helsinki), 239–244.
 Kellner, C., & Wachtler, T. (2013). A distributed code for color in natural scenes derived
 from center-surround filtered cone signals. Frontiers in Psychology, Front Psychol 4: 661.
 doi: [10.3389/fpsyg.2013.00661](http://www.frontiersin.org/Journal/10.3389/fpsyg.2013.00661/abstract)
-
-[![Build Status](https://travis-ci.org/gicmo/cube.png?branch=master)](https://travis-ci.org/gicmo/cube)
